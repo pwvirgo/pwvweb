@@ -1,0 +1,82 @@
+	body {
+		margin:5px 5px 0px 5px;
+		padding:0px;
+		}
+	
+	.leftof3 {
+		position: absolute;
+		left:5px;
+		padding:5px 5px 5px 5px;
+		/* top:50px;		*/
+		width:300px;
+		background:#ffb;
+		border:1px solid #000;
+		text-align:left;
+		line-height:150%;
+		}
+
+	.centerof3 {
+		text-align:left;
+		border:1px solid #000;
+	  	background:#def;
+		margin-left:320px;
+   		margin-right:230px;
+		padding:5px 5px 5px 5px;
+
+	 /* 	voice-family: "\"}\"";   /* stop ie from looking further */
+		voice-family: inherit;
+   		margin-left: 320px;
+   		margin-right:240px;
+		}
+
+.junk {OWO:123}	/* PV GET EI TO READ THINGS AGAIN */
+
+ /*	html>body .centerof3 {
+   		margin-left:250px;
+   		margin-right:230px;
+		}	*/
+
+	.rightof3 {
+		text-align:left;
+		position: absolute;
+		right:5px;
+	   /*	top:80px; */
+		width:328px;
+		background:#fcf;
+		border:1px solid #000;
+		padding:5px 5px 5px 5px;
+		}
+	
+	#banner {
+		background:#ddf;
+		height:40px;
+		border-top:5px solid #eef;
+		border-right:5px solid #ddf;
+		border-left:5px solid #aaf;
+		border-bottom:5px solid #55f;
+		voice-family: "\"}\"";
+		voice-family: inherit;
+		height:69px;
+		}
+	html>body #banner {
+		height:39px;
+		}
+		
+	p,h1,pre {
+		margin:0px 5px 5px 5px;
+		}
+		
+	h1 {
+		font-size:18px;
+		padding-top:5px;
+		}
+		
+	#banner h1 {
+		font-size:24px;
+		padding:5px 5px 0px 5px;
+		margin:0px;
+		}
+	
+	#rightcontent p {
+		font-size:10px
+		}
