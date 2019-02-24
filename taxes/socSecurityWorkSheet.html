@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html lang='en'>
+<head>
+	<meta charset='utf-8'>
+	<meta name='description' content='a basic html shell'>
+	<meta name='keywords' content='search engine keyword'>
+	<title>2018 Social Secutity Taxes</title>
+	<style>
+		h1 { 
+			text-align: center;
+			font-size:  1.5em;
+			color:		navy;
+		}
+		h2 {
+
+			text-align: center;
+			font-size:  1.25em;
+			color:		navy;
+		}
+
+		label{
+    		display: inline-block;
+    		float: left;
+    		clear: left;
+    		width: 50%;
+    		text-align: left;
+		}
+		input {
+  			display: inline-block;
+  			float: left;
+		}
+	</style>
+	<style>
+	
+		.f1040{color: red}
+		.notme{color: green}
+		.calc{color: blue}
+	</style>
+	<script>
+		function warn(msg) {
+			document.getElementById('warn').innerHTML=msg;
+			alert(msg);
+		}
+		function validNum(elId) {
+			let elem = Number(document.getElementById(elId).value);
+			if (elem==NaN || elem < 0) {
+				warn(elId + ' must be a postive number');
+				return false;
+			}
+			return elem;
+		}
+
+		function doit() {
+
+			let line1 = validNum('line1');
+
+			let line2 = line1 * 0.5;
+			document.getElementById('line2').value=line2;
+
+			let line3 = validNum('line3'); 
+
+			let line4 = Number(document.getElementById('line4').value);
+
+			let line5 = 0;
+			let line6 = line2 + line3 +line4 + line5;
+			document.getElementById('line6').value=line6;
+			let line7 = 0;
+			let line8 = line6 + line7;;
+			document.getElementById('line8').value=line8;
+
+		}
+	</script>
+
+</head>
+<body> 
+	<h1>2018 Social Secutity Tax worksheet - Pub 915 - Calculates the
+	taxable amount</h2>
+	<div>
+		<button onclick='doit()'>Calc</button>
+	<form>
+
+		<label class='f1040'>1. Total of Forms SSA-1099 and RRB-1099
+		Also put this on Form 1040 line 5a:</label>
+			<input id='line1' class='f1040' type='number' step='0.01' value='31215'> <br>
+		<label class='calc'>2. Multiply line 1 by 50% (0.50)</label>
+			<input id='line2' type='number' step='0.01'><br>
+		<label class='f1040'>3. Combine the amounts from From 1040, lines 1, 2b, 3b, 4b and
+		Schedule 1 (Form 1040), line 22 {0, 634, 17409, 379</label>
+			<input id='line3' type='number' step='0.01' value='18422'><br>
+		<label class='f1040'>4. Enter amount, if any, from Form 1040, line 2a</label>
+			<input id='line4' type='number' step='0.01'><br>
+		<label class='notme'>5. Exclutions/Adjustments for foreign income blah blah</label></br>
+		<label class='calc'>6. Combine lines 2, 3, 4, and 5</label>
+			<input id='line6' type='number' step='0.01' value='34029.5'><br>
+		<label class='notme'>7. Enter Amounts from Schedule 1 (Form 1040) lines 23
+		through 32 and blah blah</label>
+		<label class='calc'>8. blah blah  copy line 6 here</label>
+			<input id='line8' type='number' step='0.01'><br>
+		<label class='notme'>9. Since you are single enter $25,000</label>
+			<input id='line9' type='number' value='25000'><br>
+		<label class='calc'>10. Is the amount on line 9 is less than
+		line 8?  If not then you have no taxable Social security
+		benefits and you should enter $0 on Form 1040, line 5b and STOP.
+		Else subtract line 9 from line 8</label>
+			<input id='line10' type='number' step='0.01'><br>
+		<label class='calc'>11. You are single so enter $9,000</label>
+			<input id='line11' type='number' value='9000'><br>
+		<label class='calc'>12. Subtract line 11 from line 10 if less than 0 enter 0</label>
+			<input id='line12' type='number' step='0.01'><br>
+		<label class='calc'>13. Enter the smaller of line 10 or line 11</label>
+			<input id='line13' type='number' step='0.01'><br>
+		<label class='calc'>14. Multiply line 13 by 50% (0.50)</label>
+			<input id='line14' type='number' step='0.01'><br>
+		<label class='calc'>15. Enter the smaller of line 2 or line 14</label>
+			<input id='line5' type='number' step='0.01'><br>
+		<label class='calc'>16. Multiple line 12 by 85% (0.85)</label>
+			<input id='line16' type='number' step='0.01'><br>
+		<label class='calc'>17. Add lines 15 and 16</label>
+			<input id='line17' type='number' step='0.01'><br>
+		<label class='calc'>18. Mulitply line 1 by 85% (0.85)</label>
+			<input id='line18' type='number' step='0.01'><br>
+		<label class='calc'>19. Enter the smaller of lines 17 or line 18. Also enter
+		this on amount on Form 1040, line 5b</label>
+			<input id='line19' type='number' step='0.01'>
+	</form></div>
+	<hr style="width: 100%">
+	<div>
+		<button onclick='doit()'>Calc2</button>
+    </div>
+	<br>
+	<div class='f1040' id='warn'></div>
+</body>
+</html>
+
