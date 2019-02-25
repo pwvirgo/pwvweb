@@ -37,6 +37,8 @@
 		.calc{color: blue}
 	</style>
 	<script>
+
+
 		function warn(msg) {
 			document.getElementById('warn').innerHTML=msg;
 			alert(msg);
@@ -50,7 +52,49 @@
 			return elem;
 		}
 
+		// initialize 
+		function init() {
+			document.getElementById('warn').innerHTML='';
+			document.getElementById('taxableSSN').innerHTML='';
+			document.getElementById('fedTaxes').innerHTML='';
+
+		}
+
+
+		function fedTaxes(ssnTaxable, otherTaxable, deductions) {
+			let brackets = {
+				year: 2019,
+				cutoff: [9700, 39475, 84200, 160725, 204100, 510300,
+				100000000 ],
+				rate:	[0.1, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37]
+			};
+			
+			let fedtax=0;   // the tax will be put here
+			// the taxable income not yet accounted for 
+			let remainder=ssnTaxable + otherTaxable - deductions;
+			let botoff=0; // the bottom $ amount of the tax bracket
+			let topoff=0; // the top $ amount of the tax bracket
+			let range=0;  // the $ amount in this tax bracketi
+			let j = 0;
+			for ( ; remainder>0; j++) {
+				topoff=brackets.cutoff[j];
+				range = topoff-botoff;
+				fedtax = fedtax + Math.min(range, remainder) *
+								brackets.rate[j];
+				remainder = remainder - range;
+				botoff = topoff;
+			}
+			document.getElementById('fedTaxes').innerHTML= 
+				"total federal taxes: " + fedtax;
+			return fedtax;
+
+			
+		}
+
 		function doit() {
+
+			init();  // clear old messages
+			let taxable=0;
 
 			let line1 = validNum('line1');
 
@@ -62,17 +106,70 @@
 			let line4 = Number(document.getElementById('line4').value);
 
 			let line5 = 0;
+			
 			let line6 = line2 + line3 +line4 + line5;
 			document.getElementById('line6').value=line6;
+			
 			let line7 = 0;
-			let line8 = line6 + line7;;
+			
+			let line8 = line6 + line7;
 			document.getElementById('line8').value=line8;
+			
+			let line9 = validNum('line9');
 
+			if (line9 > line8) {
+				document.getElementById('taxableSSN').innerHTML=
+				'None of SSN is taxable because line 9 is greater than line 8';
+				
+				fedTaxes(0, line3, 13600);
+				return;
+			}
+
+
+			let line10 = line8 - line9;
+			document.getElementById('line10').value=line10;
+
+			let line11 = validNum('line11');
+			let line12 = Math.max(line10 - line11, 0);
+			document.getElementById('line12').value=line12;
+
+			let line13 = Math.min(line10, line11);
+			document.getElementById('line13').value=line13;
+
+			let line14 = line13 * 0.5;
+			document.getElementById('line14').value=line14;
+
+			let line15=Math.min(line2, line14);
+			document.getElementById('line15').value=line15;
+
+			let line16=line12 * 0.85;
+			document.getElementById('line16').value=line16;
+			
+			let line17= line15 + line16;
+			document.getElementById('line17').value=line17;
+
+			let line18 = line1 * 0.85;  
+			document.getElementById('line18').value=line18;
+
+			let line19 = Math.min(line17, line18);
+			document.getElementById('line19').value=line19;
+
+			document.getElementById('taxableSSN').innerHTML='$' + line19 +
+				' is taxable. Enter this into Form 1040, line 5b';
+
+		//function fedTaxes(ssnTaxable, otherTaxable, dedutions) {
+			fedTaxes(line19, line3, 13600);
+			
 		}
 	</script>
 
 </head>
 <body> 
+	<a href='https://www.irs.gov/publications/p915'> IRS Publication
+	915</a><br>
+	<a href='https://apps.irs.gov/app/freeFile/'> Free tax filing
+	apps</a><br>
+	https://www.calcxml.com/calculators/how-much-of-my-social-security-benefit-may-be-taxed
 	<h1>2018 Social Secutity Tax worksheet - Pub 915 - Calculates the
 	taxable amount</h2>
 	<div>
@@ -112,7 +209,7 @@
 		<label class='calc'>14. Multiply line 13 by 50% (0.50)</label>
 			<input id='line14' type='number' step='0.01'><br>
 		<label class='calc'>15. Enter the smaller of line 2 or line 14</label>
-			<input id='line5' type='number' step='0.01'><br>
+			<input id='line15' type='number' step='0.01'><br>
 		<label class='calc'>16. Multiple line 12 by 85% (0.85)</label>
 			<input id='line16' type='number' step='0.01'><br>
 		<label class='calc'>17. Add lines 15 and 16</label>
@@ -129,6 +226,8 @@
     </div>
 	<br>
 	<div class='f1040' id='warn'></div>
+	<div id='taxableSSN'></div><br>
+	<div id='fedTaxes'></div><br>
 </body>
 </html>
 
