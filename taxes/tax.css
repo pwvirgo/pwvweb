@@ -1,0 +1,27 @@
+h1 { 
+	text-align: center;
+	font-size:  1.5em;
+	color:		navy;
+}
+h2 {
+
+	text-align: center;
+	font-size:  1.25em;
+	color:		navy;
+}
+
+label{
+	display: inline-block;
+	float: left;
+	clear: left;
+	width: 50%;
+	text-align: left;
+}
+input {
+	display: inline-block;
+	float: left;
+}
+
+.f1040{color: red}
+.notme{color: green}
+.calc{color: blue}
