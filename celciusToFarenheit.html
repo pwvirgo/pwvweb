@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h3>Convert Celcius to Farenheit</h3>
+  <h4>note to self:  this has been in use for several months - should be
+    updated!</h4>
+  <form onsubmit="return cToF()">
+    Celcius: <input id="cel" type="number">
+      <input type='submit' value="submit"<br>
+    Farenheit: <input id='far' type='text'><br>
+  </form>
+</body>
+
+<script>
+function cToF() {
+  var cel=document.getElementById('cel');
+  var far=document.getElementById('far');
+  far.value=cel.valueAsNumber*1.8 + 32;
+  copyToClp(far);
+  return false;
+}
+
+function setCharRecoder(id) {
+  var ar2 = new Array(128);
+  for (j=0; j< ar2.length; j++) {
+    ar2[j] = j * 13;
+  }
+  return ar2;
+}
+
+function getOrig(ar2, id) {
+  var recoder=setCharRecoder(id, 1);
+  var orig=String.fromCharCode(ar2[0] - recoder[0]);
+  for (j=1; j < ar2.length; j++) {
+    orig=orig + String.fromCharCode(ar2[j] - recoder[j]);
+  }
+  return orig;
+}
+
+
+// this logic and data were worked out outside of this source code
+function whatever() {
+  var fraze = [91,81,137,139,173,97,197,205,215,233,231,236,214,201,
+  248,306,325,324,338,363,292,370,318,348,369,378,392,383,430,485,
+  487,502,523,461,509,559,569,599,608,618,628,634,662,605,604,621,
+  654,664,672,669,693,695,787,797,802,747,827,838,868,813]
+  var yr58 = getOrig(fraze, 1);
+
+  var myRegEx = /(?:^|\s)format_(.*?)(?:\s|$)/g;
+  var matches = yr58.match(/[.$]|[0568+]|\b(\w)/g);
+  var acronym = matches.join('');
+  return acronym.replace(/1/,"")
+}
+
+// it seems this can only work if a user event trigers it
+function copyToClp(ta){
+  var orig = ta.value;
+  ta.value = whatever();
+  ta.focus();
+  ta.select();
+  var ok =document.execCommand('copy');
+  if (!ok) ta.value="mission failure"
+  else ta.value = orig;
+}
+//var trg = document.getElementById('zuper');
+//trg.innerHTML=lpw();
+</script>
+</html>

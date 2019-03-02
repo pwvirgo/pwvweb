@@ -118,8 +118,10 @@ function fedTaxes(ssnTaxable, otherTaxable, deductions) {
 	};
 
 	let fedtax=0;   // the tax will be put here
+	let totalTaxable=ssnTaxable + otherTaxable - deductions;
+
 	// the taxable income not yet accounted for 
-	let remainder=ssnTaxable + otherTaxable - deductions;
+	let remainder=totalTaxable;
 	let botoff=0; // the bottom $ amount of the tax bracket
 	let topoff=0; // the top $ amount of the tax bracket
 	let range=0;  // the $ amount in this tax bracketi
@@ -132,8 +134,18 @@ function fedTaxes(ssnTaxable, otherTaxable, deductions) {
 		remainder = remainder - range;
 		botoff = topoff;
 	}
+
+	
+	let fedtrate= fedtax / (ssnTaxable + otherTaxable);
 	document.getElementById('fedTaxes').innerHTML= 
-		"total federal taxes: " + fedtax;
+	    "Taxable income:" +
+		"<br>Social Security Benefits: " + ssnTaxable + 
+		"<br>plus Other Income: " + otherTaxable +
+		"<br>minus Deductions: " + deductions + 
+		"<hr>Total Federal Taxable income:" + totalTaxable + 
+		"<br><br>Total federal taxes: " + fedtax + 
+		" overall tax rate: " + fedtrate;
+
 	return fedtax;
 
 

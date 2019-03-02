@@ -34,13 +34,30 @@ P.def { color:red;
 
 li { color:red;
     background:white;
-  margin-top: 20px;
+  	margin-top: 5px;
   }
 
 h1 { 
-    font: 24pt brush script, Brush Script MT,verdana, arial, helvetica; 
-    font-weight: bold;
-    border-bottom: thick solid red ;}
+		font: 1.5em helvetica arial; 
+		font-weight: bold;
+	}
+
+h2 { 
+		font: 1.3em helvetica arial; 
+		font-weight: bold;
+	}
+	
+h3 { 
+		font: 1.2em helvetica arial; 
+		font-weight: bold;
+	}
+	
+h4 { 
+		font: 1.1em helvetica arial; 
+		font-weight: bold;
+	}
+	
+
  
 
 a:link, a:active {

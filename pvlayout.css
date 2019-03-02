@@ -48,6 +48,7 @@
 		}
 	
 	#banner {
+		font-size:18px;
 		background:#ddf;
 		height:40px;
 		border-top:5px solid #eef;
@@ -66,16 +67,7 @@
 		margin:0px 5px 5px 5px;
 		}
 		
-	h1 {
-		font-size:18px;
-		padding-top:5px;
-		}
-		
-	#banner h1 {
-		font-size:24px;
-		padding:5px 5px 0px 5px;
-		margin:0px;
-		}
+
 	
 	#rightcontent p {
 		font-size:10px
